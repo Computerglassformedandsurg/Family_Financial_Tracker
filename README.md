@@ -1,8 +1,8 @@
 # Family_Financial_Tracker
 An automated financial tracking solution. Uses Python and Google Sheets to extract transaction data, clean and load it into a MySQL database, and continuously update progress for key financial goals (debt reduction and savings fund).
 
-****💰 **Family Financial Tracker ETL**
-********
+💰 **Family Financial Tracker ETL**
+
 This repository contains the Python ETL (Extract, Transform, Load) script that powers our family financial tracking and goal management system.
 
 **It performs the following actions:**
@@ -50,8 +50,7 @@ Create a file named .env in the root of the repository and fill it with your cre
 pip install python-dotenv mysql-connector-python gspread pandas
 
 
-**🏃 Running the ETL Script
-**
+🏃 **Running the ETL Script**
 Once the setup is complete, you can run the ETL script from your terminal:
 
 python expense_etl.py
