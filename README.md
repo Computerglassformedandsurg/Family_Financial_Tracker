@@ -1,5 +1,5 @@
-**Local Financial Data ETL Pipeline (SQLite)
-**
+_**Local Financial Data ETL Pipeline (SQLite)**
+_
 💰 **Project Overview**
 
 This repository contains a lightweight, serverless Python ETL (Extract, Transform, Load) script designed for consolidating personal or family financial data. It is optimized for monthly data uploads from various sources (like bank exports or local spreadsheets).
