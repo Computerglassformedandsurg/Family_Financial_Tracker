@@ -1,69 +1,86 @@
-# Family_Financial_Tracker
-An automated financial tracking solution. Uses Python and Google Sheets to extract transaction data, clean and load it into a MySQL database, and continuously update progress for key financial goals (debt reduction and savings fund).
+**Local Financial Data ETL Pipeline (SQLite)
+**
+💰 **Project Overview**
 
-💰 **Family Financial Tracker ETL**
+This repository contains a lightweight, serverless Python ETL (Extract, Transform, Load) script designed for consolidating personal or family financial data. It is optimized for monthly data uploads from various sources (like bank exports or local spreadsheets).
 
-This repository contains the Python ETL (Extract, Transform, Load) script that powers our family financial tracking and goal management system.
+By using SQLite, the entire data history is stored in a single, portable file (finance.db), allowing for rapid, local SQL analysis without the complexity of managing a separate database server.
 
-**It performs the following actions:**
+**The pipeline performs the following actions:**
 
-Extracts raw transaction data from a shared Google Sheet.
+**Extract:** Reads raw transaction data from a local CSV file.
 
-Transforms the data by standardizing categories, converting expense amounts to negative values, and identifying the Member responsible.
+**Transform:** Standardizes categories, converts expense amounts to negative values, and performs cleanup.
 
-Loads the cleaned data into a central MySQL database.
+**Load:** Loads the cleaned data into the central SQLite database, performing checks to avoid importing duplicate transactions across monthly runs.
 
-Updates Goal Progress for our $15,000 Debt Payoff and $10,000 Savings targets based on transaction history.
+**Goal Tracking:** Updates Goal Progress for financial targets (e.g., Debt Payoff, Savings) based on the consolidated transaction history.
 
-🛠️ **Project Setup**
+🛠️** Getting Started**
 
-**1. Prerequisites**
+1. **Prerequisites**
 
-Before running the script, ensure you have the following installed:
+You only need Python (3.8+) installed. The SQLite database module (sqlite3) is standard and built into Python.
 
-Python (3.8+)
+2. **Install Dependencies**
 
-MySQL Server (or equivalent database host)
+You'll need the pandas library for efficient data handling and transformation.
 
-A Google Cloud Platform Service Account with access to your Google Sheet.
-
-**2. Database Setup**
-
-Create the Database: Run the commands in the financial_schema.sql file (which we prepared earlier) in your MySQL console (or using MySQL Workbench). This creates the transactions, categories, and the crucial goals tables.
-
-# Example of command line execution
-mysql -u [your_user] -p [your_database] < financial_schema.sql
+pip install pandas streamlit
 
 
-**3. Google Sheets Setup**
+3. **Project Structure**
 
-Create your Ledger: Set up your Google Sheet with the required columns (Date, Description, Category, Member, Amount).
+This project relies on a simple folder structure. The finance.db file will be created automatically upon the first successful run.
 
-Service Account: Download your Google Service Account JSON key file and place it securely in this project directory (or a safe location). Do not commit this file to GitHub!
+.
+├── expense_etl.py    # The main ETL script
+├── finance.db        # The consolidated SQLite database (generated)
+└── monthly_exports/  # Folder for your input CSV files
+    ├── 2024_01_transactions.csv
+    └── 2024_02_transactions.csv
 
-**4. Environment Variables**
 
-Create a file named .env in the root of the repository and fill it with your credentials (use the .env.template below as a guide).
+4. **Database Setup (Automatic)**
 
-**5. Install Dependencies**
-
-pip install python-dotenv mysql-connector-python gspread pandas
-
+No external database server is required. The Python script handles the creation of the finance.db file and the necessary tables automatically when it is run for the first time.
 
 🏃 **Running the ETL Script**
-Once the setup is complete, you can run the ETL script from your terminal:
 
-python expense_etl.py
+**Prepare Your Data**
+
+Ensure your new monthly financial data is saved as a clean CSV file. The required columns are: Date, Flow, Description, Category, and positive Amount.
+
+**Execute the Script**
+
+Run the ETL script from your terminal, passing the path to the new CSV file as an argument:
+
+python expense_etl.py monthly_exports/latest_export.csv
 
 
-The script will handle the full pipeline, printing status updates and the calculated goal progress directly to your console.
+The script will handle the full pipeline, printing status updates and confirmation messages to your console.
 
-**📊 Next Steps: Visualization**
+📊 **Analysis and Visualization**
 
-After running the ETL script, your MySQL database will contain all the data needed to build your visualizations, showing:
+The core strength of using a portable SQLite database is its ease of connectivity with virtually any modern BI or data analysis tool. Once the finance.db file is populated by the ETL script, you can connect to it directly.
 
-Spending by Category.
+**Connecting to Power BI (via ODBC)**
 
-Spending by Member (Me vs. Husband).
+Power BI has excellent native support for SQLite. The most reliable method is typically using an ODBC (Open Database Connectivity) driver.
 
-Real-time progress towards your Debt and Savings goals.
+Install ODBC Driver: Ensure you have a suitable SQLite ODBC driver installed on your system (e.g., SQLiteODBC).
+
+Get Data: In Power BI Desktop, select "Get Data" -> "ODBC".
+
+Connection String: In the ODBC dialogue, use the Connection String option and provide the path to your database file:
+
+Driver={SQLite3 ODBC Driver};Database=C:\path\to\your\finance.db;
+
+
+**Load Data: **Power BI will connect and allow you to select the transactions table to begin building your reports.
+
+**Connecting to Streamlit (Native Python)**
+
+Since the ETL is Python-based, connecting to SQLite from Streamlit is straightforward using the built-in sqlite3 library and Pandas. 
+
+
