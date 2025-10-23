@@ -16,53 +16,52 @@ By using SQLite, the entire data history is stored in a single, portable file (f
 
 **Goal Tracking:** Updates Goal Progress for financial targets (e.g., Debt Payoff, Savings) based on the consolidated transaction history.
 
-🛠️** Getting Started**
+💰 Simple Finance CSV to SQLite Importer
 
-1. **Prerequisites**
+A utility script to reliably transform raw financial transaction data from a structured CSV file into a queryable SQLite database.
 
-You only need Python (3.8+) installed. The SQLite database module (sqlite3) is standard and built into Python.
+✅ Current Status: Core Import Functional
 
-2. **Install Dependencies**
+The primary goal of transforming CSV data into a structured database is complete.
 
-You'll need the pandas library for efficient data handling and transformation.
+What's Done:
 
-pip install pandas streamlit
+Python Script (csv_importer.py): Handles file reading, data validation, type conversion, and efficient bulk insertion into SQLite.
 
+Database Creation: Automatically creates finance_tracker.db.
 
-3. **Project Structure**
+Schema Enforcement: Ensures the transactions table is properly structured with columns for Date, Description, Category, Amount, and Flow.
 
-This project relies on a simple folder structure. The finance.db file will be created automatically upon the first successful run.
+How to Run:
 
-.
-├── expense_etl.py    # The main ETL script
-├── finance.db        # The consolidated SQLite database (generated)
-└── monthly_exports/  # Folder for your input CSV files
-    ├── 2024_01_transactions.csv
-    └── 2024_02_transactions.csv
+Place your transaction data in a file named finance_data.csv in the project root.
 
+Ensure your CSV includes the exact headers: Date, Description, Category, Amount, Flow.
 
-4. **Database Setup (Automatic)**
+Execute the script in your terminal:
 
-No external database server is required. The Python script handles the creation of the finance.db file and the necessary tables automatically when it is run for the first time.
-
-🏃 **Running the ETL Script**
-
-**Prepare Your Data**
-
-Ensure your new monthly financial data is saved as a clean CSV file. The required columns are: Date, Flow, Description, Category, and positive Amount.
-
-**Execute the Script**
-
-Run the ETL script from your terminal, passing the path to the new CSV file as an argument:
-
-python expense_etl.py monthly_exports/latest_export.csv
+python csv_importer.py
 
 
-The script will handle the full pipeline, printing status updates and confirmation messages to your console.
+🚀 Project Roadmap (Next Steps)
 
-📊 **Analysis and Visualization**
+The next steps will focus on making the data useful by adding a front-end interface and advanced reporting capabilities.
 
-The core strength of using a portable SQLite database is its ease of connectivity with virtually any modern BI or data analysis tool. Once the finance.db file is populated by the ETL script, you can connect to it directly.
+Phase 2: Data Analysis & UI
+
+Database Query Layer: Add dedicated functions to csv_importer.py for retrieving summary data (e.g., total income, total expenses, balance by month).
+
+Web Visualization: Implement a single-file React or HTML application to read the finance_tracker.db contents and display charts/tables.
+
+Filtering: Add basic user controls to filter transactions by Category or Flow.
+
+Phase 3: Advanced Reporting
+
+Implement more complex analytics, such as:
+
+Calculating net worth over time.
+
+Generating budget variance reports.
 
 **Connecting to Power BI (via ODBC)**
 
