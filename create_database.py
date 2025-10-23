@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Oct 22 22:11:37 2025
-
 @author: jaisi
 """
 
@@ -180,3 +178,4 @@ if __name__ == "__main__":
     view_tables_contents('goals')
     
     print("\nDatabase setup complete. Ready for new operations.")
+
