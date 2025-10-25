@@ -166,7 +166,7 @@ if __name__ == "__main__":
     # 1. Ensure tables exist
     create_table()
     
-    # --- As requested, skipping data insertion to view empty tables ---
+    # --- For testing data entry ---
     # insert_sample_data() 
     
     print("\n" + "#"*60)
@@ -178,4 +178,5 @@ if __name__ == "__main__":
     view_tables_contents('goals')
     
     print("\nDatabase setup complete. Ready for new operations.")
+
 
