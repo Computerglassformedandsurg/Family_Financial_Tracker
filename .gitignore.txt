@@ -1,0 +1,4 @@
+# .gitignore
+
+# Ignore project secrets so they aren't pushed to GitHub
+client_secrets_oauth.json
