@@ -1,0 +1,9 @@
+transaction_id,date,description,category,amount,flow
+39,10/27/2025,Freelance Project Payment,Freelance,850.0,Income
+40,10/27/2025,Gym Membership,Health,60.0,Expense
+38,10/26/2025,Home Internet Bill,Utilities,70.0,Expense
+36,10/25/2025,Birthday Gift Refund,Gift,35.0,Income
+37,10/25/2025,Movie Tickets,Entertainment,24.0,Expense
+35,10/24/2025,Online Course Subscription,Education,49.99,Expense
+34,10/23/2025,Gas for Car,Transportation,45.0,Expense
+33,10/22/2025,Weekly Groceries,Food,125.5,Expense
