@@ -1,3 +1,6 @@
+pandas
+plotly
 streamlit
-pandas==2.2.2  # Pin to a specific, stable version
-plotly==5.22.0 # Pin to a specific, stable version
+yfinance
+pandas-datareader
+prophet
