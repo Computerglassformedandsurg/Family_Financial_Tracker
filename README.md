@@ -5,7 +5,7 @@
 **This project is now a live, interactive web dashboard.** The data ETL is complete, and the application provides immediate visualization and analysis of the financial data.
 
 ### **View the Live Dashboard!**
-[**Click Here to View the Live Streamlit Dashboard**]([PASTE_YOUR_STREAMLIT_APP_URL_HERE](https://familyfinancialtracker-tqenib8gljrwpwgze6sndy.streamlit.app/))
+[**Click Here to View the Live Streamlit Dashboard**]([https://familyfinancialtracker-tqenib8gljrwpwgze6sndy.streamlit.app/]
 
 
 ![Financial Dashboard Preview](assets/dashboard_preview.gif)
