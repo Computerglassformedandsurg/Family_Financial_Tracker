@@ -7,7 +7,7 @@
 ### **View the Live Dashboard!**
 [**Click Here to View the Live Streamlit Dashboard**]([PASTE_YOUR_STREAMLIT_APP_URL_HERE](https://familyfinancialtracker-tqenib8gljrwpwgze6sndy.streamlit.app/))
 
-***(Optional: Add an image tag for visual appeal)***
+
 ![Financial Dashboard Preview](assets/dashboard_preview.gif)
 
 ---
