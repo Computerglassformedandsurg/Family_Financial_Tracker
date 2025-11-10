@@ -1,85 +1,46 @@
-_**Local Financial Data ETL Pipeline (SQLite)**
-_
-💰 **Project Overview**
+# 💰 Family Financial Tracker Dashboard (Deployed)
 
-This repository contains a lightweight, serverless Python ETL (Extract, Transform, Load) script designed for consolidating personal or family financial data. It is optimized for monthly data uploads from various sources (like bank exports or local spreadsheets).
+## 🎯 Project Status: LIVE WEB APPLICATION
 
-By using SQLite, the entire data history is stored in a single, portable file (finance.db), allowing for rapid, local SQL analysis without the complexity of managing a separate database server.
+**This project is now a live, interactive web dashboard.** The data ETL is complete, and the application provides immediate visualization and analysis of the financial data.
 
-**The pipeline performs the following actions:**
+### **View the Live Dashboard!**
+[**Click Here to View the Live Streamlit Dashboard**]([PASTE_YOUR_STREAMLIT_APP_URL_HERE](https://familyfinancialtracker-tqenib8gljrwpwgze6sndy.streamlit.app/))
 
-**Extract:** Reads raw transaction data from a local CSV file.
+***(Optional: Add an image tag for visual appeal)***
+![Financial Dashboard Preview](assets/dashboard_preview.gif)
 
-**Transform:** Standardizes categories, converts expense amounts to negative values, and performs cleanup.
+---
 
-**Load:** Loads the cleaned data into the central SQLite database, performing checks to avoid importing duplicate transactions across monthly runs.
+## 🛠️ Technology Stack
 
-**Goal Tracking:** Updates Goal Progress for financial targets (e.g., Debt Payoff, Savings) based on the consolidated transaction history.
+| Component | Technology | Role |
+| :--- | :--- | :--- |
+| **Frontend/UI** | **Streamlit** | Interactive web dashboard framework. |
+| **Data Visualization** | **Plotly** & **Pandas** | Generating dynamic and professional charts (Monthly Trends, Category Breakdown). |
+| **Data Storage** | **SQLite** | Serverless, single-file database (`finance.db`) for portable data history. |
+| **Data Retrieval** | **Python `sqlite3`** | Custom SQL queries and data fetching directly to the UI. |
 
-💰 Simple Finance CSV to SQLite Importer
+---
 
-A utility script to reliably transform raw financial transaction data from a structured CSV file into a queryable SQLite database.
+## 💡 Financial Analysis Features
 
-✅ Current Status: Core Import Functional
+The deployed dashboard offers the following analysis capabilities powered by the data in `finance.db`:
 
-The primary goal of transforming CSV data into a structured database is complete.
+* **Financial Summary:** Key metrics including Total Income, Total Expenses, and Net Flow (Savings).
+* **Monthly Trends:** Line charts showing Income, Expense, and Net Flow over time for historical comparison.
+* **Category Breakdown:** Bar charts visualizing spending by category.
+* **Transaction Viewer:** Filterable table view of raw transaction details.
 
-What's Done:
+---
 
-Python Script (csv_importer.py): Handles file reading, data validation, type conversion, and efficient bulk insertion into SQLite.
+## ⚙️ Data Pipeline & Structure (The ETL Core)
 
-Database Creation: Automatically creates finance_tracker.db.
+The original ETL pipeline ensures data quality and completeness before analysis.
 
-Schema Enforcement: Ensures the transactions table is properly structured with columns for Date, Description, Category, Amount, and Flow.
+* **Goal:** Consolidate raw CSV data into a clean, queryable **`finance.db`** file.
+* **Status:** The core ETL logic (Standardization, Duplication Checks, and Loading) is **fully functional** within the `analyzer.py` / `csv_importer.py` scripts.
+* **Database Schema:** The `transactions` table includes essential columns: `Date`, `Description`, `Category`, `Amount`, and `Flow`.
 
-How to Run:
-
-Place your transaction data in a file named finance_data.csv in the project root.
-
-Ensure your CSV includes the exact headers: Date, Description, Category, Amount, Flow.
-
-Execute the script in your terminal:
-
-python csv_importer.py
-
-
-🚀 Project Roadmap (Next Steps)
-
-The next steps will focus on making the data useful by adding a front-end interface and advanced reporting capabilities.
-
-Phase 2: Data Analysis & UI
-
-Database Query Layer: Add dedicated functions to csv_importer.py for retrieving summary data (e.g., total income, total expenses, balance by month).
-
-Web Visualization: Implement a single-file React or HTML application to read the finance_tracker.db contents and display charts/tables.
-
-Filtering: Add basic user controls to filter transactions by Category or Flow.
-
-Phase 3: Advanced Reporting
-
-Implement more complex analytics, such as:
-
-Calculating net worth over time.
-
-Generating budget variance reports.
-
-**Connecting to Power BI (via ODBC)**
-
-Power BI has excellent native support for SQLite. The most reliable method is typically using an ODBC (Open Database Connectivity) driver.
-
-Install ODBC Driver: Ensure you have a suitable SQLite ODBC driver installed on your system (e.g., SQLiteODBC).
-
-Get Data: In Power BI Desktop, select "Get Data" -> "ODBC".
-
-Connection String: In the ODBC dialogue, use the Connection String option and provide the path to your database file:
-
-Driver={SQLite3 ODBC Driver};Database=C:\path\to\your\finance.db;
-
-
-**Load Data: **Power BI will connect and allow you to select the transactions table to begin building your reports.
-
-**Connecting to Streamlit (Native Python)**
-
-Since the ETL is Python-based, connecting to SQLite from Streamlit is straightforward using the built-in sqlite3 library and Pandas. 
-
-
+### Data Maintenance Note
+To update the live dashboard, data must be first inserted into the local `finance.db` file, then committed, and pushed to GitHub, followed by a **redeploy** on Streamlit Cloud.
